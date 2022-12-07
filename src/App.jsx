@@ -5,21 +5,13 @@ import Nav from "../components/Nav"
 import Cart from "../pages/Cart"
 import Photos from "../pages/Photos"
 
-
-
-
-
 function App() {    
     return (
         <div>
           <Header/>
-          <h1>Home Page</h1>
           <Routes>
-            <Route path="/">
-              <Route index element={<Photos/>} />
-              <Route path="cart" element={<Cart/>}/>
-            </Route>
-            
+            <Route path="/" element={<Photos/>}/>
+            <Route path="cart" element={<Cart/>}/>
           </Routes>
         </div>
     )

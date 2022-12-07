@@ -1,6 +1,6 @@
 import React, {useState, createContext, useEffect} from 'react'
 import axios from 'axios'
-const {Provider, Consumer} = createContext();
+const Context = createContext();
 
 // # Challenge
 
@@ -25,10 +25,10 @@ function ContextProvider({children}){
   }, [])
   
   return (
-    <Provider value={{photos, setPhotos}}>
+    <Context.Provider value={{photos}}>
       {children}
-    </Provider>
+    </Context.Provider>
   )
 }
 
-export {ContextProvider, Consumer as ContextConsumer}
+export {ContextProvider, Context}
