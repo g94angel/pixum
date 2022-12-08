@@ -4,14 +4,16 @@ const Context = createContext();
 
 
 function ContextProvider(props){
-  const [photos, setPhotos] = useState([])
+  const [photos, setPhotos] = useState(JSON.parse(localStorage.getItem('photos')) || [])
 
-  useEffect(() => {
-    const url = 'https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json'
-    axios.get(url)
-      .then(res => setPhotos(res.data))
-      .catch(err => console.log(err))
-  }, [])
+  // don't need to run effect since the images are saved in localStorage
+  // useEffect(() => {
+    // don't need to run effect since the images are saved in localStorage
+    // const url = 'https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json'
+    // axios.get(url)
+    //   .then(res => setPhotos(res.data))
+    //   .catch(err => console.log(err))
+  // }, [])
 
   const toggleFavorite = (id) => {
    setPhotos(photos.map(photo => {
@@ -23,7 +25,6 @@ function ContextProvider(props){
     } else return photo
    }))
   }
-  console.log(photos)
 
   return (
     <Context.Provider value={{photos, toggleFavorite}}>

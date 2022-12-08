@@ -6,9 +6,10 @@ export default function Image({img, className}) {
   const {toggleFavorite} = useContext(Context)
 
   const heartIcon = hoverState && 
-        <i className={img.isFavorite? "ri-heart-fill favorite": "ri-heart-line favorite"} onClick={() => toggleFavorite(img.id)}></i>
+    <i className={img.isFavorite ? "ri-heart-fill favorite" : "ri-heart-line favorite"} onClick={() => toggleFavorite(img.id)}></i>
         
-    const cartIcon = hoverState && <i className="ri-add-circle-line cart"></i>
+  const cartIcon = hoverState && 
+    <i className="ri-add-circle-line cart"></i>
 
   function handleHover() {
     setHoverState(prevState => !prevState)

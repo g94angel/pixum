@@ -1,7 +1,6 @@
 import React from "react"
 import {Routes, Route} from 'react-router-dom'
 import Header from "../components/Header"
-import Nav from "../components/Nav"
 import Cart from "../pages/Cart"
 import Photos from "../pages/Photos"
 
