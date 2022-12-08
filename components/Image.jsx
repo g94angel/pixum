@@ -1,4 +1,5 @@
 import React, {useState, useContext} from 'react'
+import PropTypes from 'prop-types'
 import { Context } from '../Context'
 
 export default function Image({img, className}) {
@@ -26,4 +27,14 @@ export default function Image({img, className}) {
       <img src={img.url} className="image-grid" />
     </div>
   )
+}
+
+Image.propTypes = {
+  // describing the shape of the img object
+  img: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool
+  }).isRequired,
+  className: PropTypes.string
 }
