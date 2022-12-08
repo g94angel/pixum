@@ -1,14 +1,12 @@
 import React, {useState, useContext} from 'react'
 import PropTypes from 'prop-types'
 import { Context } from '../Context'
+import useHover from '../hooks/useHover'
 
 export default function Image({img, className}) {
-  const [hoverState, setHoverState] = useState(false)
+  // const [hoverState, setHoverState] = useState(false)
+  const [hoverState, hoverRef] = useHover();
   const {toggleFavorite, addToCart, cartItems, removeFromCart} = useContext(Context)
-
-  localStorage.setItem('cartItems', JSON.stringify(cartItems))
-
-  
   
   function heartIcon() {
     if (img.isFavorite) {
@@ -29,15 +27,16 @@ export default function Image({img, className}) {
   }
         
   
-  function handleHover() {
-    setHoverState(prevState => !prevState)
-  }
+  // function handleHover() {
+  //   setHoverState(prevState => !prevState)
+  // }
 
   return (
     <div 
       className={`${className} image-container`} 
-      onMouseEnter={handleHover} 
-      onMouseLeave={handleHover} 
+      ref={hoverRef}
+      // onMouseEnter={handleHover} 
+      // onMouseLeave={handleHover} 
     >
       {heartIcon()}
       {cartIcon()}

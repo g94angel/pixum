@@ -23,8 +23,9 @@ main.photos {
 }
 
 main.cart-page {
-  padding: 10px;
+  padding: 20px 100px;
 }
+
 
 .cart-page>h1 {
   text-align: center;
@@ -38,6 +39,9 @@ main.cart-page {
 .cart-page div.order-button {
   display: flex;
   justify-content: center;
+}
+.cart-page >p {
+  text-align: center;
 }
 
 div.order-button>button {
