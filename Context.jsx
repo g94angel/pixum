@@ -5,14 +5,14 @@ const Context = createContext();
 
 function ContextProvider(props){
   const [photos, setPhotos] = useState(JSON.parse(localStorage.getItem('photos')) || [])
+  const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cartItems')) || [])
 
   // don't need to run effect since the images are saved in localStorage
   // useEffect(() => {
-    // don't need to run effect since the images are saved in localStorage
-    // const url = 'https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json'
-    // axios.get(url)
-    //   .then(res => setPhotos(res.data))
-    //   .catch(err => console.log(err))
+  //   const url = 'https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json'
+  //   axios.get(url)
+  //     .then(res => setPhotos(res.data))
+  //     .catch(err => console.log(err))
   // }, [])
 
   const toggleFavorite = (id) => {
@@ -26,8 +26,22 @@ function ContextProvider(props){
    }))
   }
 
+  const addToCart = (item) => {
+    setCartItems(prevItems => [...prevItems, item])
+  }
+
+  const removeFromCart = (item) => {
+    setCartItems(prevItems => [...prevItems.filter(photo => photo.id !== item.id)])
+  }
+
   return (
-    <Context.Provider value={{photos, toggleFavorite}}>
+    <Context.Provider value={{
+      photos, 
+      toggleFavorite, 
+      cartItems, 
+      addToCart,
+      removeFromCart
+    }}>
       {props.children}
     </Context.Provider>
   )
