@@ -20,9 +20,13 @@ function ContextProvider(props){
     if (photo.id === id) {
       return {
         ...photo,
-        isFavorite: !photo.isFavorite
+        isFavorite: !photo.isFavorite,
+        
       }
-    } else return photo
+    } else return {
+      ...photo,
+      
+    }
    }))
   }
 
@@ -30,8 +34,12 @@ function ContextProvider(props){
     setCartItems(prevItems => [...prevItems, item])
   }
 
-  const removeFromCart = (item) => {
-    setCartItems(prevItems => [...prevItems.filter(photo => photo.id !== item.id)])
+  const removeFromCart = (id) => {
+    setCartItems(prevItems => prevItems.filter(item => item.id !== id))
+  }
+
+  const emptyCart = () => {
+    setCartItems([])
   }
 
   return (
@@ -40,7 +48,8 @@ function ContextProvider(props){
       toggleFavorite, 
       cartItems, 
       addToCart,
-      removeFromCart
+      removeFromCart,
+      emptyCart
     }}>
       {props.children}
     </Context.Provider>

@@ -21,7 +21,7 @@ export default function Image({img, className}) {
   function cartIcon() {
     const inCart = cartItems.find(item => item.id === img.id)
     if (inCart) {
-      return <i className='ri-shopping-cart-fill cart' onClick={() => removeFromCart(img)} ></i>
+      return <i className='ri-shopping-cart-fill cart' onClick={() => removeFromCart(img.id)} ></i>
 
     } else if (hoverState) {
       return <i className='ri-add-circle-line cart' onClick={() => addToCart(img)} ></i>
