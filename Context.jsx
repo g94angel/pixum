@@ -2,6 +2,7 @@ import React, {useState, createContext, useEffect} from 'react'
 import axios from 'axios'
 const Context = createContext();
 
+
 function ContextProvider(props){
   const [photos, setPhotos] = useState([])
 
@@ -11,9 +12,21 @@ function ContextProvider(props){
       .then(res => setPhotos(res.data))
       .catch(err => console.log(err))
   }, [])
-  
+
+  const toggleFavorite = (id) => {
+   setPhotos(photos.map(photo => {
+    if (photo.id === id) {
+      return {
+        ...photo,
+        isFavorite: !photo.isFavorite
+      }
+    } else return photo
+   }))
+  }
+  console.log(photos)
+
   return (
-    <Context.Provider value={{photos}}>
+    <Context.Provider value={{photos, toggleFavorite}}>
       {props.children}
     </Context.Provider>
   )
