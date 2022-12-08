@@ -9,7 +9,10 @@ function Cart() {
   localStorage.setItem('cartItems', JSON.stringify(cartItems))
 
   const cartItemElements = cartItems.map(item => (
-    <CartItem key={item.id} item={item} removeFromCart={removeFromCart} />
+    
+      <CartItem key={item.id} item={item} removeFromCart={removeFromCart} />
+      
+    
   ))
 
   function placeOrder() {

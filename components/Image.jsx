@@ -5,7 +5,7 @@ import useHover from '../hooks/useHover'
 
 export default function Image({img, className}) {
   // const [hoverState, setHoverState] = useState(false)
-  const [hoverState, hoverRef] = useHover();
+  const [hoverState, ref] = useHover();
   const {toggleFavorite, addToCart, cartItems, removeFromCart} = useContext(Context)
   
   function heartIcon() {
@@ -34,7 +34,7 @@ export default function Image({img, className}) {
   return (
     <div 
       className={`${className} image-container`} 
-      ref={hoverRef}
+      ref={ref}
       // onMouseEnter={handleHover} 
       // onMouseLeave={handleHover} 
     >

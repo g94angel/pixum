@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 
 export default function useHover() {
   const [hovered, setHovered] = useState(false);
-  const hoverRef = useRef(null);
+  // creating a ref to which I can add event listeners
+  const ref = useRef(null);
 
   function enter() {
     setHovered(true);
@@ -12,7 +13,10 @@ export default function useHover() {
   }
 
   useEffect(() => {
-    const instance = hoverRef.current;
+    // when this mounts, enter and leave are added to the ref
+
+    // ref.current is mutable, so by the time the cleanup function runs, it may have been set to null. The solution is to capture any mutable values inside the effect:
+    const instance = ref.current;
     instance.addEventListener('mouseenter', enter);
     instance.addEventListener('mouseleave', leave);
 
@@ -22,5 +26,6 @@ export default function useHover() {
     };
   }, []);
 
-  return [hovered, hoverRef];
+  // returing hovered and ref (with functions added)
+  return [hovered, ref];
 }
