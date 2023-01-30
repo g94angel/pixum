@@ -7,13 +7,22 @@ function ContextProvider(props){
   const [photos, setPhotos] = useState(JSON.parse(localStorage.getItem('photos')) || [])
   const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cartItems')) || [])
 
-  // don't need to run effect since the images are saved in localStorage
-  // useEffect(() => {
-  //   const url = 'https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json'
-  //   axios.get(url)
-  //     .then(res => setPhotos(res.data))
-  //     .catch(err => console.log(err))
-  // }, [])
+  
+  useEffect(() => {
+    const photosArr = JSON.parse(localStorage.getItem('photos'))
+    if (photosArr.length > 0) {
+      
+      setPhotos(photosArr)
+    } else {
+      // will need to run effect if images are not saved in localStorage
+      
+      const url = 'https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json'
+      axios.get(url)
+      .then(res => setPhotos(res.data))
+      .catch(err => console.log(err))
+    }
+    
+  }, [])
 
   const toggleFavorite = (id) => {
    setPhotos(photos.map(photo => {

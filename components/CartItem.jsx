@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import PropTypes from 'prop-types'
 import useHover from '../hooks/useHover'
+// import { Context } from '../hooks/useHover'
 
 const CartItem = ({item, removeFromCart}) => {
   // const [hovered, setHoverState] = useState(false)
